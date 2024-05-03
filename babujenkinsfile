@@ -30,6 +30,19 @@ pipeline {
          sh 'docker build -t cbabu85/insure-me-03may:1.0 .'
               }
            }
-       }
- }
+    stage('Docker Login') {
+       steps {
+          echo 'Login to Docker hub to push the images'
+          withCredentials([usernamePassword(credentialsId: 'Dockerlogin-user', passwordVariable: 'Dockerpassword', usernameVariable: 'Dockerlogin')]) {
+          sh 'docker login -u ${env.Dockerlogin} -p ${env.Dockerpassword}'
+                                                 }
+                           }
+              }
+    stage('Push the Image') {
+       steps {
+          sh 'docker push cbabu85/insure-me-app:5.0'
+                            }
+             }
+     }
     
+}

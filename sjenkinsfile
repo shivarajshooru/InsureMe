@@ -45,6 +45,11 @@ steps  {
         }
 }
 
+  stage('Configure and Deploy to the test-server'){
+steps {
+        ansiblePlaybook disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible.yml', vaultTmpPath: ''
+    }
+       } 
 
 
   }

@@ -25,6 +25,16 @@ steps{
        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Insurance/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
     }
   }
+
+ stage('Containerize the application'){
+       steps {
+ echo 'Creating Docker image'
+sh 'docker build -t shivarajshooru/InsureMe:01 .'  
+}
+    }
+
+
+
   }
 }
-}
+

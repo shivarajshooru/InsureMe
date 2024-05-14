@@ -38,7 +38,7 @@ sh 'docker build -t shivarajshooru/insureme:01 .'
 steps  {
         echo 'Pushing the docker image to DockerHub'
        withCredentials([usernamePassword(credentialsId: 'dockerlogin-user', passwordVariable: 'DockerPassword', usernameVariable: 'DockerLogin')]) {
-    sh "docker login -u ${env.DockerLogin} -p ${env.DockerPassword}"
+    sh "docker login -u ${DockerLogin} -p ${DockerPassword}"
         sh "docker push shivarajshooru/insureme:1.0"
 }
             
